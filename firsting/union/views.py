@@ -3,6 +3,7 @@ from .forms import *
 from django.contrib import messages
 from django.views import generic
 from youtubesearchpython import VideosSearch
+from django.contrib.auth.forms import UserCreationForm
 
 
 # Create your views here.
@@ -117,3 +118,18 @@ def youtube(request):
         form = DashboardForm()
     context = {"form": form}
     return render(request, 'youtube.html', context)
+
+
+def register(request):
+    if request.method == "POST" :
+        form = UserRegistraionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username =form.cleaned_data.get("username")
+            messages.success(request,f"Account created for {username}!!")
+        else:
+             form = UserRegistraionForm()
+        context ={
+        "form": form
+    }
+    return render(request, 'register.html', context)

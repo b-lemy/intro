@@ -37,6 +37,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'union',
     'crispy_forms',
+    'firsting',
+
+
 
 )
 
